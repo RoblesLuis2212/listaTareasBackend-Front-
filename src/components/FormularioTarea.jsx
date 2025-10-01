@@ -21,30 +21,33 @@ const FormularioTarea = () => {
     }
 
     return (
-        <section className='container border border-white'>
-            <Form onSubmit={handleSubmit(postValidaciones)}>
-                <Form.Group className="d-flex justify-content-betwen py-2">
-                    <Form.Control type="text" placeholder="ingresa una tarea" {...register("tarea", {
-                        required: "Este campo es obligatorio",
-                        minLength: {
-                            value: 10,
-                            message: "la tarea debe contener minimo 10 caracteres"
-                        },
-                        maxLength: {
-                            value: 60,
-                            message: "la tarea debe contener maximo 60 "
-                        }
-                    })} />
-                    <Button variant="primary" type="submit" className='ms-1'>
-                        agregar
-                    </Button>
-                </Form.Group>
-                <Form.Text className="text-danger">
-                    {errors.tarea?.message}
-                </Form.Text>
-            </Form>
-            <ListaTareas></ListaTareas>
-        </section>
+        <>
+            <section className='container'>
+                <h1 className="text-center mt-2">Lista de Tareas</h1>
+                <Form onSubmit={handleSubmit(postValidaciones)}>
+                    <Form.Group className="d-flex justify-content-betwen py-2">
+                        <Form.Control type="text" placeholder="ingresa una tarea" {...register("tarea", {
+                            required: "Este campo es obligatorio",
+                            minLength: {
+                                value: 10,
+                                message: "la tarea debe contener minimo 10 caracteres"
+                            },
+                            maxLength: {
+                                value: 60,
+                                message: "la tarea debe contener maximo 60 "
+                            }
+                        })} />
+                        <Button variant="primary" type="submit" className='ms-1'>
+                            agregar
+                        </Button>
+                    </Form.Group>
+                    <Form.Text className="text-danger">
+                        {errors.tarea?.message}
+                    </Form.Text>
+                </Form>
+                <ListaTareas></ListaTareas>
+            </section>
+        </>
     );
 };
 

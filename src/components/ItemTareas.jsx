@@ -10,7 +10,7 @@ const ItemTareas = ({ tarea }) => {
                     <i className="bi bi-trash-fill"></i>
                 </Button>
                 <Button className='btn btn-warning ms-2'>
-                    <i class="bi bi-pencil-square"></i>
+                    <i className="bi bi-pencil-square"></i>
                 </Button>
             </div>
         </ListGroupItem>

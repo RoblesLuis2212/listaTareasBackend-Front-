@@ -6,7 +6,6 @@ function App() {
 
   return (
     <>
-      <h1 className="text-center">Lista de Tareas</h1>
       <main className="container">
         <FormularioTarea />
       </main>
