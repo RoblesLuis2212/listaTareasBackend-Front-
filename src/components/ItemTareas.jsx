@@ -1,10 +1,18 @@
 import React from 'react';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 const ItemTareas = ({ tarea }) => {
     return (
-        <ListGroupItem>
+        <ListGroupItem className='d-flex justify-content-between'>
             {tarea}
+            <div>
+                <Button className='btn btn-danger ms-2'>
+                    <i className="bi bi-trash-fill"></i>
+                </Button>
+                <Button className='btn btn-warning ms-2'>
+                    <i class="bi bi-pencil-square"></i>
+                </Button>
+            </div>
         </ListGroupItem>
     );
 };
