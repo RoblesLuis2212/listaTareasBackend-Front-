@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { listarTareas } from '../helpers/queries';
 
-const ListaTareas = () => {
+const ListaTareas = ({ actualizar }) => {
     //Logica para manipular modal
     const [show, setShow] = useState(false);
 
@@ -17,7 +17,7 @@ const ListaTareas = () => {
 
     useEffect(() => {
         obtenerTareas();
-    }, [])
+    }, [actualizar])
 
     const obtenerTareas = async () => {
         const respuesta = await listarTareas();
