@@ -6,6 +6,9 @@ const ItemTareas = ({ tarea, handleShow }) => {
         <ListGroupItem className='d-flex justify-content-between'>
             {tarea}
             <div>
+                <Button className='btn btn-success'>
+                    <i className="bi bi-check-square-fill"></i>
+                </Button>
                 <Button className='btn btn-danger ms-2'>
                     <i className="bi bi-trash-fill"></i>
                 </Button>
