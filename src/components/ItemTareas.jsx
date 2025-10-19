@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 
-const ItemTareas = ({ tarea }) => {
+const ItemTareas = ({ tarea, handleShow }) => {
     return (
         <ListGroupItem className='d-flex justify-content-between'>
             {tarea}
@@ -9,7 +9,7 @@ const ItemTareas = ({ tarea }) => {
                 <Button className='btn btn-danger ms-2'>
                     <i className="bi bi-trash-fill"></i>
                 </Button>
-                <Button className='btn btn-warning ms-2'>
+                <Button className='btn btn-warning ms-2' onClick={() => handleShow()}>
                     <i className="bi bi-pencil-square"></i>
                 </Button>
             </div>

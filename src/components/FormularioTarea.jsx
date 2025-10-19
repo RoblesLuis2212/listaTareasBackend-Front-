@@ -15,7 +15,6 @@ const FormularioTarea = () => {
     } = useForm()
 
     const postValidaciones = (data) => {
-        data.id = crypto.randomUUID();
         console.log(data);
         reset();
     }
@@ -26,15 +25,15 @@ const FormularioTarea = () => {
                 <h1 className="text-center mt-2">Lista de Tareas</h1>
                 <Form onSubmit={handleSubmit(postValidaciones)}>
                     <Form.Group className="d-flex justify-content-betwen py-2">
-                        <Form.Control type="text" placeholder="ingresa una tarea" {...register("tarea", {
+                        <Form.Control type="text" placeholder="ingresa una tarea" {...register("descripcion", {
                             required: "Este campo es obligatorio",
                             minLength: {
-                                value: 10,
-                                message: "la tarea debe contener minimo 10 caracteres"
+                                value: 5,
+                                message: "la tarea debe contener minimo 5 caracteres"
                             },
                             maxLength: {
-                                value: 60,
-                                message: "la tarea debe contener maximo 60 "
+                                value: 100,
+                                message: "la tarea debe contener maximo 100 "
                             }
                         })} />
                         <Button variant="primary" type="submit" className='ms-1'>
@@ -42,7 +41,7 @@ const FormularioTarea = () => {
                         </Button>
                     </Form.Group>
                     <Form.Text className="text-danger">
-                        {errors.tarea?.message}
+                        {errors.descripcion?.message}
                     </Form.Text>
                 </Form>
                 <ListaTareas></ListaTareas>
