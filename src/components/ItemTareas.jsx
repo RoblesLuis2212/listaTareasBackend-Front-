@@ -4,7 +4,7 @@ import { Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 const ItemTareas = ({ tarea, handleShow }) => {
     return (
         <ListGroupItem className='d-flex justify-content-between'>
-            {tarea}
+            {tarea.descripcion}
             <div>
                 <Button className='btn btn-success'>
                     <i className="bi bi-check-square-fill"></i>
