@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { listarTareas, obtenerTareaIDAPI } from '../helpers/queries';
 
-const ListaTareas = () => {
+const ListaTareas = ({ tareas, setTareas }) => {
     //Logica para manipular modal
     const [show, setShow] = useState(false);
 
@@ -24,8 +24,6 @@ const ListaTareas = () => {
             console.log("Ocurrio un error al obtener la tarea")
         }
     }
-
-    const [tareas, setTareas] = useState([]);
 
     useEffect(() => {
         obtenerTareas();

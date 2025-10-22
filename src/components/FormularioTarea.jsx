@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useForm } from 'react-hook-form';
 import ListaTareas from './ListaTareas';
-import { agregarTarea } from '../helpers/queries';
+import { agregarTarea, listarTareas } from '../helpers/queries';
 import Swal from 'sweetalert2';
 
 const FormularioTarea = () => {
@@ -15,6 +15,8 @@ const FormularioTarea = () => {
         reset
     } = useForm()
 
+    const [tareas, setTareas] = useState([]);
+
     const postValidaciones = async (data) => {
         console.log(data);
         const respuesta = await agregarTarea(data);
@@ -25,6 +27,11 @@ const FormularioTarea = () => {
                 icon: "success",
             });
             reset();
+        }
+        const respuestaTareas = await listarTareas();
+        if (respuestaTareas.status === 200) {
+            const tareasRestantes = await respuestaTareas.json();
+            setTareas(tareasRestantes);
         }
         else {
             console.log("Ocurrio un error al crear la tarea");
@@ -56,7 +63,7 @@ const FormularioTarea = () => {
                         {errors.descripcion?.message}
                     </Form.Text>
                 </Form>
-                <ListaTareas></ListaTareas>
+                <ListaTareas tareas={tareas} setTareas={setTareas}></ListaTareas>
             </section>
         </>
     );
