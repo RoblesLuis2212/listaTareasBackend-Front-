@@ -29,3 +29,30 @@ export const agregarTarea = async (tarea) => {
     return null;
   }
 };
+
+export const obtenerTareaIDAPI = async (id) => {
+  try {
+    const respuesta = await fetch(`${tareasBackend}${id}`);
+    console.log(respuesta);
+    return respuesta;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
+
+export const editarTareaAPI = async (id, tarea) => {
+  try {
+    const respuesta = await fetch(`${tareasBackend}${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(tarea),
+    });
+    return respuesta;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};

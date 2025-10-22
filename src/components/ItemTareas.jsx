@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { obtenerTareaIDAPI } from '../helpers/queries';
 
-const ItemTareas = ({ tarea, handleShow }) => {
+const ItemTareas = ({ tarea, handleShow, setTareas }) => {
     return (
         <ListGroupItem className='d-flex justify-content-between'>
             {tarea.descripcion}
@@ -12,7 +13,7 @@ const ItemTareas = ({ tarea, handleShow }) => {
                 <Button className='btn btn-danger ms-2'>
                     <i className="bi bi-trash-fill"></i>
                 </Button>
-                <Button className='btn btn-warning ms-2' onClick={() => handleShow()}>
+                <Button className='btn btn-warning ms-2' onClick={() => handleShow(tarea._id)}>
                     <i className="bi bi-pencil-square"></i>
                 </Button>
             </div>

@@ -4,20 +4,32 @@ import ModalEditarTarea from './ModalEditarTarea';
 import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { listarTareas } from '../helpers/queries';
+import { listarTareas, obtenerTareaIDAPI } from '../helpers/queries';
 
-const ListaTareas = ({ actualizar }) => {
+const ListaTareas = () => {
     //Logica para manipular modal
     const [show, setShow] = useState(false);
 
+    const [tareaSeleccionada, setTareaSeleccionada] = useState(null);
+
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = async (id) => {
+        const respuesta = await obtenerTareaIDAPI(id);
+        if (respuesta.status === 200) {
+            const tareaBuscada = await respuesta.json();
+            setTareaSeleccionada(tareaBuscada);
+            setShow(true);
+        }
+        else {
+            console.log("Ocurrio un error al obtener la tarea")
+        }
+    }
 
     const [tareas, setTareas] = useState([]);
 
     useEffect(() => {
         obtenerTareas();
-    }, [actualizar])
+    }, [])
 
     const obtenerTareas = async () => {
         const respuesta = await listarTareas();
@@ -31,10 +43,10 @@ const ListaTareas = ({ actualizar }) => {
         <>
             <ListGroup>
                 {tareas.map((itemTareas) => (
-                    <ItemTareas key={itemTareas._id} tarea={itemTareas} handleShow={handleShow}></ItemTareas>
+                    <ItemTareas key={itemTareas._id} tarea={itemTareas} setTareas={setTareas} handleShow={handleShow}></ItemTareas>
                 ))}
             </ListGroup>
-            <ModalEditarTarea show={show} handleShow={handleShow} handleClose={handleClose} />
+            <ModalEditarTarea show={show} handleShow={handleShow} tarea={tareaSeleccionada} handleClose={handleClose} />
         </>
     );
 };

@@ -1,16 +1,23 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { useForm } from 'react-hook-form';
+import { obtenerTareaIDAPI } from '../helpers/queries';
 
 
-const ModalEditarTarea = ({ show, handleShow, handleClose }) => {
+const ModalEditarTarea = ({ show, handleShow, handleClose, tarea }) => {
     //Validacion del formulario
     const {
-        register, handleSubmit, formState: { errors }, reset
+        register, handleSubmit, formState: { errors }, reset, setValue
     } = useForm();
+
+    useEffect(() => {
+        if (tarea) {
+            setValue("descripcion", tarea.descripcion);
+        }
+    }, [tarea, setValue])
 
     const postValidaciones = (data) => {
         console.log(data);

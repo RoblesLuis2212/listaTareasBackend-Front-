@@ -15,8 +15,6 @@ const FormularioTarea = () => {
         reset
     } = useForm()
 
-    const [actualizar, SetActualizar] = useState(false);
-
     const postValidaciones = async (data) => {
         console.log(data);
         const respuesta = await agregarTarea(data);
@@ -27,7 +25,6 @@ const FormularioTarea = () => {
                 icon: "success",
             });
             reset();
-            SetActualizar(!actualizar);
         }
         else {
             console.log("Ocurrio un error al crear la tarea");
@@ -59,7 +56,7 @@ const FormularioTarea = () => {
                         {errors.descripcion?.message}
                     </Form.Text>
                 </Form>
-                <ListaTareas actualizar={actualizar}></ListaTareas>
+                <ListaTareas></ListaTareas>
             </section>
         </>
     );
