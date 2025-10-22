@@ -4,10 +4,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { useForm } from 'react-hook-form';
-import { obtenerTareaIDAPI } from '../helpers/queries';
+import { editarTareaAPI, listarTareas, obtenerTareaIDAPI } from '../helpers/queries';
+import Swal from 'sweetalert2';
 
 
-const ModalEditarTarea = ({ show, handleShow, handleClose, tarea }) => {
+const ModalEditarTarea = ({ show, handleShow, handleClose, tarea, setTareas }) => {
     //Validacion del formulario
     const {
         register, handleSubmit, formState: { errors }, reset, setValue
@@ -19,7 +20,22 @@ const ModalEditarTarea = ({ show, handleShow, handleClose, tarea }) => {
         }
     }, [tarea, setValue])
 
-    const postValidaciones = (data) => {
+    const postValidaciones = async (data) => {
+        const respuesta = await editarTareaAPI(tarea._id, data);
+        const RestareasRestantes = await listarTareas();
+        if (respuesta.status === 200) {
+            Swal.fire({
+                title: "Tarea Actualizada Exitosamente!",
+                icon: "success",
+                draggable: true
+            });
+            const tareasRestantes = await RestareasRestantes.json();
+            setTareas(tareasRestantes);
+            handleClose();
+        }
+        else {
+            alert("Ocurrio un error al actualizar la tarea")
+        }
         console.log(data);
         reset();
     }

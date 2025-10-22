@@ -46,7 +46,7 @@ const ListaTareas = () => {
                     <ItemTareas key={itemTareas._id} tarea={itemTareas} setTareas={setTareas} handleShow={handleShow}></ItemTareas>
                 ))}
             </ListGroup>
-            <ModalEditarTarea show={show} handleShow={handleShow} tarea={tareaSeleccionada} handleClose={handleClose} />
+            <ModalEditarTarea show={show} handleShow={handleShow} tarea={tareaSeleccionada} setTareas={setTareas} handleClose={handleClose} />
         </>
     );
 };
