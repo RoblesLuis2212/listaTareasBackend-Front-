@@ -56,3 +56,15 @@ export const editarTareaAPI = async (id, tarea) => {
     return null;
   }
 };
+
+export const borrarTareaAPI = async (id) => {
+  try {
+    const respuesta = await fetch(`${tareasBackend}${id}`, {
+      method: "DELETE",
+    });
+    return respuesta;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
